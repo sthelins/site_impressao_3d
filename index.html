@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressão 3D SM — Peças Únicas Impressas em 3D</title>
+<meta name="description" content="Decoração, miniaturas e presentes personalizados impressos em 3D. Peças únicas feitas com amor e tecnologia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #080808;
+  color: #e8e8e8;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ── VARIÁVEIS ────────────────────────────────────────────────────────────── */
+:root {
+  --gold: #c9a84c;
+  --gold-light: #f0c060;
+  --gold-dim: #8a6f30;
+  --bg: #080808;
+  --bg2: #111111;
+  --bg3: #191919;
+  --bg4: #222222;
+  --border: rgba(201,168,76,0.18);
+  --text: #e8e8e8;
+  --text-dim: #888;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --max: 1200px;
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── UTILITÁRIOS ─────────────────────────────────────────────────────────── */
+.container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+.section { padding: 96px 0; }
+.section-sm { padding: 64px 0; }
+.gold { color: var(--gold-light); }
+.tag {
+  display: inline-block;
+  background: rgba(201,168,76,0.12);
+  color: var(--gold-light);
+  border: 1px solid var(--border);
+  padding: 6px 16px;
+  border-radius: 40px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.section-subtitle {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  max-width: 560px;
+  line-height: 1.7;
+}
+.text-center { text-align: center; }
+.text-center .section-subtitle { margin: 0 auto; }
+
+/* ── GLOW EFFECT ─────────────────────────────────────────────────────────── */
+.glow { text-shadow: 0 0 40px rgba(201,168,76,0.4); }
+.glow-box { box-shadow: 0 0 40px rgba(201,168,76,0.08), 0 8px 32px rgba(0,0,0,0.4); }
+
+/* ── BOTÕES ──────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.btn-gold {
+  background: linear-gradient(135deg, #c9a84c, #f0c060);
+  color: #080808;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.45);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid rgba(255,255,255,0.2);
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+  background: rgba(201,168,76,0.06);
+}
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+}
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(37,211,102,0.45);
+}
+.btn-lg { padding: 18px 36px; font-size: 1.05rem; border-radius: var(--radius); }
+
+/* ── NAV ─────────────────────────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 0 24px;
+  transition: var(--transition);
+}
+nav.scrolled {
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, #c9a84c, #f0c060);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+.logo span { color: var(--gold-light); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta { display: flex; align-items: center; gap: 12px; }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* ── MOBILE NAV ──────────────────────────────────────────────────────────── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 72px; left: 0; right: 0; bottom: 0;
+  background: rgba(8,8,8,0.97);
+  backdrop-filter: blur(20px);
+  z-index: 999;
+  padding: 40px 24px;
+  flex-direction: column;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--bg3);
+  transition: var(--transition);
+}
+.mobile-menu a:hover { color: var(--gold-light); }
+
+/* ── HERO ────────────────────────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 72px;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 20% 70%, rgba(201,168,76,0.04) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  padding: 80px 0;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--gold-light);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.hero-title .gradient-text {
+  background: linear-gradient(135deg, #c9a84c, #f0c060, #c9a84c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200%;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--bg3);
+}
+.hero-stat-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+.hero-stat-label {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-showcase {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1;
+  border-radius: 24px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  padding: 16px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.hero-showcase::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, transparent 340deg, rgba(201,168,76,0.15) 360deg);
+  animation: rotate 8s linear infinite;
+}
+@keyframes rotate { to { transform: rotate(360deg); } }
+.showcase-item {
+  border-radius: 12px;
+  background: var(--bg3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 2.2rem;
+  color: var(--text-dim);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+.showcase-item:hover {
+  border-color: var(--border);
+  background: var(--bg4);
+}
+.showcase-item .item-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+.showcase-item:first-child { grid-row: span 2; font-size: 3rem; }
+
+/* ── CATEGORIAS ──────────────────────────────────────────────────────────── */
+#categorias { background: var(--bg2); }
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.cat-card {
+  background: var(--bg3);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.cat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,0.06), transparent);
+  opacity: 0;
+  transition: var(--transition);
+}
+.cat-card:hover { border-color: var(--border); transform: translateY(-4px); }
+.cat-card:hover::before { opacity: 1; }
+.cat-icon { font-size: 2.4rem; margin-bottom: 12px; }
+.cat-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+.cat-desc { font-size: 0.8rem; color: var(--text-dim); }
+
+/* ── GALERIA / VITRINE ───────────────────────────────────────────────────── */
+#vitrine { background: var(--bg); }
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 40px 0 48px;
+}
+.filter-btn {
+  padding: 8px 20px;
+  border-radius: 40px;
+  border: 1.5px solid var(--bg4);
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--gold);
+  color: var(--gold-light);
+  background: rgba(201,168,76,0.08);
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.product-card {
+  background: var(--bg2);
+  border: 1px solid var(--bg4);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+  position: relative;
+}
+.product-card:hover {
+  border-color: var(--border);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+}
+.product-img {
+  aspect-ratio: 1;
+  background: var(--bg3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.product-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.product-card:hover .product-img img { transform: scale(1.06); }
+.product-img-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-dim);
+}
+.product-img-placeholder .icon { font-size: 3rem; }
+.product-img-placeholder .txt { font-size: 0.75rem; text-align: center; line-height: 1.4; }
+.product-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: linear-gradient(135deg, #c9a84c, #f0c060);
+  color: #080808;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.product-info { padding: 18px; }
+.product-name {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.product-desc {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--gold-light);
+}
+.product-price small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+.btn-pedir {
+  background: rgba(201,168,76,0.1);
+  border: 1px solid var(--border);
+  color: var(--gold-light);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-pedir:hover {
+  background: rgba(201,168,76,0.2);
+  transform: scale(1.02);
+}
+.custom-cta {
+  margin-top: 64px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.custom-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.custom-cta-text h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.custom-cta-text p { color: var(--text-dim); }
+
+/* ── COMO FUNCIONA ───────────────────────────────────────────────────────── */
+#como-funciona { background: var(--bg2); }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+  position: relative;
+}
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: calc(12.5% + 32px);
+  right: calc(12.5% + 32px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-dim));
+  opacity: 0.4;
+}
+.step-card {
+  background: var(--bg3);
+  border: 1px solid var(--bg4);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  position: relative;
+  transition: var(--transition);
+}
+.step-card:hover {
+  border-color: var(--border);
+  transform: translateY(-4px);
+}
+.step-num {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, #c9a84c22, #c9a84c11);
+  border: 2px solid var(--gold-dim);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin: 0 auto 16px;
+  position: relative;
+  z-index: 1;
+}
+.step-icon { font-size: 1.6rem; margin-bottom: 12px; }
+.step-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; }
+.step-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; }
+
+/* ── SOBRE NÓS ───────────────────────────────────────────────────────────── */
+#sobre { background: var(--bg); }
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.sobre-visual {
+  position: relative;
+}
+.sobre-img-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--text-dim);
+}
+.sobre-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.sobre-placeholder { font-size: 4rem; }
+.sobre-placeholder-txt { font-size: 0.85rem; text-align: center; padding: 0 24px; }
+.sobre-badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: linear-gradient(135deg, #c9a84c, #f0c060);
+  border-radius: 14px;
+  padding: 16px 20px;
+  text-align: center;
+  color: #080808;
+  box-shadow: 0 12px 32px rgba(201,168,76,0.4);
+}
+.sobre-badge-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.sobre-badge-label { font-size: 0.75rem; font-weight: 600; }
+.sobre-content { }
+.sobre-features {
+  margin: 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sobre-feature {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.sobre-feature-icon {
+  width: 42px; height: 42px;
+  min-width: 42px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+.sobre-feature-text strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
+.sobre-feature-text span { font-size: 0.82rem; color: var(--text-dim); }
+
+/* ── FAQ ─────────────────────────────────────────────────────────────────── */
+#faq { background: var(--bg2); }
+.faq-list {
+  max-width: 760px;
+  margin: 48px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: var(--bg3);
+  border: 1px solid var(--bg4);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.faq-item.open { border-color: var(--border); }
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  cursor: pointer;
+  gap: 16px;
+}
+.faq-q-text { font-weight: 600; font-size: 0.95rem; }
+.faq-icon {
+  width: 28px; height: 28px;
+  min-width: 28px;
+  border-radius: 50%;
+  background: var(--bg4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--gold-light);
+  transition: var(--transition);
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(201,168,76,0.15); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.3s ease;
+  padding: 0 24px;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+.faq-item.open .faq-answer { max-height: 200px; padding: 0 24px 20px; }
+
+/* ── CONTATO ─────────────────────────────────────────────────────────────── */
+#contato { background: var(--bg); }
+.contato-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-top: 56px;
+}
+.contato-channels { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+.contato-channel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--bg2);
+  border: 1px solid var(--bg4);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.contato-channel:hover { border-color: var(--border); transform: translateX(4px); }
+.ch-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.ch-icon.whatsapp { background: rgba(37,211,102,0.12); }
+.ch-icon.instagram { background: rgba(225,48,108,0.12); }
+.ch-icon.email { background: rgba(201,168,76,0.12); }
+.ch-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 2px; }
+.ch-value { font-size: 0.82rem; color: var(--text-dim); }
+.contato-cta-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.contato-cta-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(201,168,76,0.08), transparent 60%);
+}
+.contato-cta-box h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+}
+.contato-cta-box p {
+  color: var(--text-dim);
+  margin-bottom: 32px;
+  line-height: 1.7;
+  position: relative;
+}
+.contato-cta-box .btn { position: relative; }
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────── */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--bg3);
+  padding: 48px 24px 32px;
+}
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+}
+.footer-brand p {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  margin-top: 12px;
+  line-height: 1.7;
+  max-width: 300px;
+}
+.footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+.social-btn {
+  width: 38px; height: 38px;
+  background: var(--bg3);
+  border: 1px solid var(--bg4);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+.social-btn:hover { border-color: var(--border); background: var(--bg4); }
+.footer-col h4 { font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; }
+.footer-col a {
+  display: block;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  transition: var(--transition);
+}
+.footer-col a:hover { color: var(--text); }
+.footer-bottom {
+  max-width: var(--max);
+  margin: 32px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--bg3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ── WHATSAPP FAB ────────────────────────────────────────────────────────── */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 900;
+  width: 58px; height: 58px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  animation: fab-pulse 3s ease-in-out infinite;
+}
+.whatsapp-fab:hover {
+  transform: scale(1.12);
+  box-shadow: 0 12px 36px rgba(37,211,102,0.55);
+}
+@keyframes fab-pulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+  50% { box-shadow: 0 8px 40px rgba(37,211,102,0.6), 0 0 0 8px rgba(37,211,102,0.08); }
+}
+.whatsapp-fab-tooltip {
+  position: absolute;
+  right: 70px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: var(--transition);
+  pointer-events: none;
+}
+.whatsapp-fab:hover .whatsapp-fab-tooltip { opacity: 1; transform: translateX(0); }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { justify-content: center; }
+  .hero-showcase { max-width: 380px; }
+  .cats-grid { grid-template-columns: repeat(2, 1fr); }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid::before { display: none; }
+  .sobre-grid { grid-template-columns: 1fr; gap: 48px; }
+  .sobre-badge { bottom: 16px; right: 16px; }
+  .contato-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta .btn:not(.btn-whatsapp-sm) { display: none; }
+  .hamburger { display: flex; }
+  .hero-stats { gap: 20px; }
+  .products-grid { grid-template-columns: 1fr 1fr; }
+  .custom-cta { flex-direction: column; text-align: center; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .cats-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .section { padding: 64px 0; }
+  .contato-cta-box { padding: 32px 24px; }
+}
+
+/* ── ANIMAÇÕES DE ENTRADA ─────────────────────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🖨️</div>
+      <span>Impressão</span>&nbsp;3D SM
+    </a>
+    <ul class="nav-links">
+      <li><a href="#vitrine">Produtos</a></li>
+      <li><a href="#como-funciona">Como Pedir</a></li>
+      <li><a href="#sobre">Sobre Nós</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://www.instagram.com/impressao3d_sm" target="_blank" class="btn btn-outline" style="padding:10px 18px;font-size:0.85rem;">
+        📸 @impressao3d_sm
+      </a>
+      <a href="https://wa.me/5511999999999?text=Olá! Vi o site e quero fazer um pedido 😊" target="_blank" class="btn btn-gold" style="padding:10px 18px;font-size:0.85rem;">
+        💬 WhatsApp
+      </a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── MOBILE MENU ───────────────────────────────────────────────────────── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#vitrine" onclick="closeMobile()">🛍️ Produtos</a>
+  <a href="#como-funciona" onclick="closeMobile()">📋 Como Pedir</a>
+  <a href="#sobre" onclick="closeMobile()">❤️ Sobre Nós</a>
+  <a href="#faq" onclick="closeMobile()">❓ FAQ</a>
+  <a href="#contato" onclick="closeMobile()">📞 Contato</a>
+  <a href="https://wa.me/5511999999999?text=Olá! Vi o site e quero fazer um pedido 😊" target="_blank" class="btn btn-whatsapp btn-lg" style="margin-top:8px;justify-content:center;">
+    💬 Fazer Pedido no WhatsApp
+  </a>
+</div>
+
+<!-- ── HERO ──────────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow">✨ Impressão 3D Personalizada</div>
+        <h1 class="hero-title">
+          Peças únicas feitas<br>
+          com <span class="gradient-text">tecnologia</span><br>
+          e muito amor
+        </h1>
+        <p class="hero-subtitle">
+          Decoração, miniaturas, utilitários e presentes personalizados impressos em 3D. Cada peça é criada especialmente para você.
+        </p>
+        <div class="hero-actions">
+          <a href="#vitrine" class="btn btn-gold btn-lg">
+            🛍️ Ver Produtos
+          </a>
+          <a href="https://wa.me/5511999999999?text=Olá! Quero um produto personalizado 😊" target="_blank" class="btn btn-outline btn-lg">
+            💬 Pedir Personalizado
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">4+</div>
+            <div class="hero-stat-label">Nichos de produtos</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">4</div>
+            <div class="hero-stat-label">Cores simultâneas</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Personalização</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual fade-up">
+        <div class="hero-showcase">
+          <div class="showcase-item">
+            <span>🏺</span>
+            <span class="item-label">Decoração</span>
+          </div>
+          <div class="showcase-item">
+            <span>⚔️</span>
+            <span class="item-label">Miniaturas</span>
+          </div>
+          <div class="showcase-item">
+            <span>📦</span>
+            <span class="item-label">Utilitários</span>
+          </div>
+          <div class="showcase-item">
+            <span>🎁</span>
+            <span class="item-label">Presentes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CATEGORIAS ────────────────────────────────────────────────────────── -->
+<section id="categorias" class="section-sm">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="tag">O que fazemos</div>
+      <h2 class="section-title">Nossas <span class="gold">Especialidades</span></h2>
+      <p class="section-subtitle">Do design à entrega — cada peça feita com precisão e cuidado</p>
+    </div>
+    <div class="cats-grid">
+      <div class="cat-card fade-up">
+        <div class="cat-icon">🏺</div>
+        <div class="cat-name">Decoração & Casa</div>
+        <div class="cat-desc">Vasos, luminárias, esculturas e objetos únicos para seu ambiente</div>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-icon">⚔️</div>
+        <div class="cat-name">Miniaturas & Colecionáveis</div>
+        <div class="cat-desc">Personagens, RPG, games, animes — miniaturas detalhadas</div>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-icon">🗂️</div>
+        <div class="cat-name">Utilitários & Organização</div>
+        <div class="cat-desc">Suportes, organizadores e acessórios funcionais para o dia a dia</div>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-icon">🎁</div>
+        <div class="cat-name">Presentes Personalizados</div>
+        <div class="cat-desc">Com nome, data ou mensagem — presentes que ninguém vai esquecer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VITRINE ───────────────────────────────────────────────────────────── -->
+<section id="vitrine" class="section">
+  <div class="container">
+    <div class="fade-up">
+      <div class="tag">Catálogo</div>
+      <h2 class="section-title">Nossas <span class="gold">Criações</span></h2>
+      <p class="section-subtitle">Cada peça é impressa com filamentos premium e acabamento cuidadoso</p>
+    </div>
+    <div class="filter-bar fade-up">
+      <button class="filter-btn active" onclick="filterProducts('todos', this)">Todos</button>
+      <button class="filter-btn" onclick="filterProducts('decoracao', this)">Decoração</button>
+      <button class="filter-btn" onclick="filterProducts('miniaturas', this)">Miniaturas</button>
+      <button class="filter-btn" onclick="filterProducts('utilitarios', this)">Utilitários</button>
+      <button class="filter-btn" onclick="filterProducts('personalizado', this)">Personalizado</button>
+    </div>
+    <div class="products-grid" id="productsGrid">
+
+      <div class="product-card fade-up" data-cat="decoracao">
+        <div class="product-img">
+          <div class="product-img-placeholder">
+            <span class="icon">🏺</span>
+            <span class="txt">Foto em breve</span>
+          </div>
+          <span class="product-badge">Destaque</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Vaso Geométrico Premium</div>
+          <div class="product-desc">PLA Silk Dourado · Multicolor disponível · Vários tamanhos</div>
+          <div class="product-footer">
+            <div class="product-price">
+              A partir de R$45
+              <small>frete a calcular</small>
+            </div>
+            <button class="btn-pedir" onclick="pedirWhatsapp('Vaso Geométrico Premium')">Pedir →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-up" data-cat="miniaturas">
+        <div class="product-img">
+          <div class="product-img-placeholder">
+            <span class="icon">⚔️</span>
+            <span class="txt">Foto em breve</span>
+          </div>
+          <span class="product-badge">Popular</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Miniatura RPG / Games</div>
+          <div class="product-desc">PLA detalhado · Alta resolução · Personalização de cor</div>
+          <div class="product-footer">
+            <div class="product-price">
+              A partir de R$35
+              <small>frete a calcular</small>
+            </div>
+            <button class="btn-pedir" onclick="pedirWhatsapp('Miniatura RPG / Games')">Pedir →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-up" data-cat="personalizado">
+        <div class="product-img">
+          <div class="product-img-placeholder">
+            <span class="icon">🎁</span>
+            <span class="txt">Foto em breve</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Nome / Placa Personalizada</div>
+          <div class="product-desc">Seu nome ou mensagem · Várias cores · Ótimo presente</div>
+          <div class="product-footer">
+            <div class="product-price">
+              A partir de R$40
+              <small>frete a calcular</small>
+            </div>
+            <button class="btn-pedir" onclick="pedirWhatsapp('Nome / Placa Personalizada')">Pedir →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-up" data-cat="utilitarios">
+        <div class="product-img">
+          <div class="product-img-placeholder">
+            <span class="icon">🗂️</span>
+            <span class="txt">Foto em breve</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Organizador de Gaveta</div>
+          <div class="product-desc">PETG resistente · Encaixes personalizados · Medidas sob demanda</div>
+          <div class="product-footer">
+            <div class="product-price">
+              A partir de R$55
+              <small>frete a calcular</small>
+            </div>
+            <button class="btn-pedir" onclick="pedirWhatsapp('Organizador de Gaveta')">Pedir →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-up" data-cat="decoracao">
+        <div class="product-img">
+          <div class="product-img-placeholder">
+            <span class="icon">💡</span>
+            <span class="txt">Foto em breve</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Luminária Decorativa</div>
+          <div class="product-desc">PLA translúcido · Efeito difusor de luz · Design moderno</div>
+          <div class="product-footer">
+            <div class="product-price">
+              A partir de R$65
+              <small>frete a calcular</small>
+            </div>
+            <button class="btn-pedir" onclick="pedirWhatsapp('Luminária Decorativa')">Pedir →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-up" data-cat="personalizado">
+        <div class="product-img">
+          <div class="product-img-placeholder">
+            <span class="icon">✨</span>
+            <span class="txt">Foto em breve</span>
+          </div>
+          <span class="product-badge">Novo</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Peça 100% Personalizada</div>
+          <div class="product-desc">Você imagina, a gente imprime · Envie sua ideia ou arquivo STL</div>
+          <div class="product-footer">
+            <div class="product-price">
+              Sob consulta
+              <small>orçamento grátis</small>
+            </div>
+            <button class="btn-pedir" onclick="pedirWhatsapp('Peça 100% Personalizada')">Pedir →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="custom-cta fade-up">
+      <div class="custom-cta-text">
+        <h3>Tem uma ideia em mente? 💭</h3>
+        <p>Manda uma mensagem! A gente imprime qualquer coisa — do seu projeto ao nosso catálogo.</p>
+      </div>
+      <a href="https://wa.me/5511999999999?text=Oi! Tenho uma ideia para uma peça personalizada 💡" target="_blank" class="btn btn-whatsapp btn-lg">
+        💬 Contar minha ideia
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMO FUNCIONA ──────────────────────────────────────────────────────── -->
+<section id="como-funciona" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="tag">Processo</div>
+      <h2 class="section-title">Como <span class="gold">Pedir</span></h2>
+      <p class="section-subtitle">Do pedido à sua porta em 4 passos simples</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-num">1</div>
+        <div class="step-icon">💬</div>
+        <div class="step-title">Fale com a gente</div>
+        <div class="step-desc">Manda mensagem no WhatsApp contando o que você quer. Escolha do catálogo ou mande sua ideia!</div>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">2</div>
+        <div class="step-icon">💰</div>
+        <div class="step-title">Orçamento grátis</div>
+        <div class="step-desc">Você recebe o valor total com frete incluso. Sem surpresas. Sem cobrança para orçar.</div>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">3</div>
+        <div class="step-icon">🖨️</div>
+        <div class="step-title">Impressão e acabamento</div>
+        <div class="step-desc">Depois do pagamento confirmado, sua peça é impressa e passa pelo acabamento com cuidado.</div>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">4</div>
+        <div class="step-icon">📦</div>
+        <div class="step-title">Entrega pra você</div>
+        <div class="step-desc">Enviamos para todo o Brasil pelos Correios ou retirada local. Acompanhamento em tempo real.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOBRE NÓS ──────────────────────────────────────────────────────────── -->
+<section id="sobre" class="section">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-visual fade-up">
+        <div class="sobre-img-wrap">
+          <!-- Substitua pela foto de vocês: <img src="imagens/foto-equipe.jpg" alt="Sthefany e namorado"> -->
+          <span class="sobre-placeholder">📸</span>
+          <span class="sobre-placeholder-txt">Adicione a foto de vocês aqui!<br><small>imagens/foto-equipe.jpg</small></span>
+        </div>
+        <div class="sobre-badge">
+          <div class="sobre-badge-num">❤️</div>
+          <div class="sobre-badge-label">feito com amor</div>
+        </div>
+      </div>
+      <div class="sobre-content fade-up">
+        <div class="tag">Nossa história</div>
+        <h2 class="section-title">Um hobby que<br>virou <span class="gold">negócio</span></h2>
+        <p style="color:var(--text-dim); line-height:1.8; margin-bottom: 16px;">
+          Somos Sthefany e nosso namorado — um casal apaixonado por tecnologia, criatividade e transformar ideias em objetos reais.
+        </p>
+        <p style="color:var(--text-dim); line-height:1.8;">
+          O que começou como hobby de impressão 3D virou uma paixão que não conseguimos guardar só pra nós. Investimos em uma <strong style="color:var(--text)">Creality Hi Combo com sistema multicolor</strong> e hoje criamos peças únicas com filamentos premium — cada uma com atenção especial ao acabamento e à qualidade.
+        </p>
+        <div class="sobre-features">
+          <div class="sobre-feature">
+            <div class="sobre-feature-icon">🎨</div>
+            <div class="sobre-feature-text">
+              <strong>Impressão Multicolor</strong>
+              <span>Até 4 cores por peça automaticamente com nosso sistema AMS</span>
+            </div>
+          </div>
+          <div class="sobre-feature">
+            <div class="sobre-feature-icon">💎</div>
+            <div class="sobre-feature-text">
+              <strong>Filamentos Premium</strong>
+              <span>PLA Silk, PETG, PLA matte — materiais de alta qualidade</span>
+            </div>
+          </div>
+          <div class="sobre-feature">
+            <div class="sobre-feature-icon">✋</div>
+            <div class="sobre-feature-text">
+              <strong>Acabamento Artesanal</strong>
+              <span>Cada peça passa por revisão e acabamento cuidadoso antes de sair</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/impressao3d_sm" target="_blank" class="btn btn-outline" style="margin-top:8px;">
+          📸 Nos siga no Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ───────────────────────────────────────────────────────────────── -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="tag">Dúvidas</div>
+      <h2 class="section-title">Perguntas <span class="gold">Frequentes</span></h2>
+      <p class="section-subtitle">Ficou com alguma dúvida? Manda no WhatsApp que a gente responde na hora!</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-up">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Qual o prazo de produção e entrega?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">O prazo de produção varia de 2 a 7 dias úteis dependendo da complexidade da peça. Após o envio, o frete pelos Correios leva mais 3 a 10 dias úteis dependendo da sua região. Informamos o prazo exato no orçamento.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Vocês fazem peças personalizadas com meu arquivo STL?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">Sim! Pode enviar seu arquivo STL ou 3MF pelo WhatsApp e a gente faz o orçamento. Também podemos adaptar designs do nosso catálogo com cores e tamanhos diferentes.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Quais formas de pagamento vocês aceitam?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">Aceitamos Pix (com desconto especial!), cartão de crédito via link de pagamento e transferência bancária. Pedimos 50% de entrada para peças personalizadas e o restante antes do envio.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">O produto vai ser exatamente igual às fotos?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">As fotos mostram peças reais produzidas por nós. Pequenas variações de cor podem ocorrer por conta de diferentes monitores ou lotes de filamento, mas o produto entregue é sempre de alta qualidade. Enviamos foto antes de despachar!</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Vocês enviam para todo o Brasil?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">Sim! Enviamos para todo o Brasil pelos Correios (PAC e SEDEX). Para São Bernardo do Campo e região, também temos opção de retirada e entrega local combinada.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Qual material vocês usam? É seguro?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">Usamos filamentos PLA (feito de amido de milho — biodegradável), PETG e outros materiais de marcas confiáveis. São seguros para uso doméstico, decoração e brinquedos para maiores de 3 anos. Não indicamos para contato direto com alimentos sem revestimento adequado.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTATO ────────────────────────────────────────────────────────────── -->
+<section id="contato" class="section">
+  <div class="container">
+    <div class="fade-up">
+      <div class="tag">Fale conosco</div>
+      <h2 class="section-title">Vamos criar<br>algo <span class="gold">incrível</span> juntos?</h2>
+    </div>
+    <div class="contato-grid">
+      <div class="fade-up">
+        <p style="color:var(--text-dim); line-height:1.8; margin-bottom:8px;">Estamos prontos para ouvir sua ideia e transformá-la em realidade. Manda mensagem que respondemos rápido!</p>
+        <div class="contato-channels">
+          <a href="https://wa.me/5511999999999?text=Olá! Vim pelo site e quero fazer um pedido 😊" target="_blank" class="contato-channel">
+            <div class="ch-icon whatsapp">💬</div>
+            <div>
+              <div class="ch-name">WhatsApp</div>
+              <div class="ch-value">Resposta em até 2 horas • Clique para abrir</div>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/impressao3d_sm" target="_blank" class="contato-channel">
+            <div class="ch-icon instagram">📸</div>
+            <div>
+              <div class="ch-name">Instagram</div>
+              <div class="ch-value">@impressao3d_sm • Direct e comentários</div>
+            </div>
+          </a>
+          <a href="mailto:impressao3d_sm@hotmail.com" class="contato-channel">
+            <div class="ch-icon email">📧</div>
+            <div>
+              <div class="ch-name">Email</div>
+              <div class="ch-value">impressao3d_sm@hotmail.com</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contato-cta-box fade-up">
+        <h3>Orçamento <span class="gold">grátis!</span></h3>
+        <p>Descreva o que você quer — produto do catálogo, personalização, medidas ou envie seu arquivo. Sem compromisso!</p>
+        <a href="https://wa.me/5511999999999?text=Olá! Quero um orçamento para:%0A%0A" target="_blank" class="btn btn-whatsapp btn-lg" style="width:100%;justify-content:center;">
+          💬 Pedir Orçamento Agora
+        </a>
+        <p style="margin-top:16px; font-size:0.78rem; color:var(--text-dim);">
+          Também no Instagram: <a href="https://www.instagram.com/impressao3d_sm" target="_blank" style="color:var(--gold-light);">@impressao3d_sm</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon">🖨️</div>
+        <span>Impressão</span>&nbsp;3D SM
+      </a>
+      <p>Peças únicas impressas em 3D com amor, tecnologia e atenção a cada detalhe. Decoração, miniaturas e presentes personalizados.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/impressao3d_sm" target="_blank" class="social-btn" title="Instagram">📸</a>
+        <a href="https://wa.me/5511999999999" target="_blank" class="social-btn" title="WhatsApp">💬</a>
+        <a href="mailto:impressao3d_sm@hotmail.com" class="social-btn" title="Email">📧</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Produtos</h4>
+      <a href="#vitrine">Decoração & Casa</a>
+      <a href="#vitrine">Miniaturas</a>
+      <a href="#vitrine">Utilitários</a>
+      <a href="#vitrine">Personalizados</a>
+    </div>
+    <div class="footer-col">
+      <h4>Links</h4>
+      <a href="#como-funciona">Como Pedir</a>
+      <a href="#sobre">Sobre Nós</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Impressão 3D SM — Todos os direitos reservados</span>
+    <span>São Bernardo do Campo, SP 🇧🇷</span>
+  </div>
+</footer>
+
+<!-- ── WHATSAPP FAB ────────────────────────────────────────────────────────── -->
+<a href="https://wa.me/5511999999999?text=Olá! Vi o site e quero fazer um pedido 😊" target="_blank" class="whatsapp-fab" title="Fale no WhatsApp">
+  💬
+  <span class="whatsapp-fab-tooltip">Falar no WhatsApp</span>
+</a>
+
+<!-- ── SCRIPTS ────────────────────────────────────────────────────────────── -->
+<script>
+// ── NAV scroll ──────────────────────────────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ── Hamburger ───────────────────────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() { mobileMenu.classList.remove('open'); }
+
+// ── FAQ accordion ────────────────────────────────────────────────────────────
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── Product filter ───────────────────────────────────────────────────────────
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card => {
+    const show = cat === 'todos' || card.dataset.cat === cat;
+    card.style.display = show ? 'block' : 'none';
+  });
+}
+
+// ── WhatsApp pedir ────────────────────────────────────────────────────────────
+function pedirWhatsapp(produto) {
+  const num = '5511999999999'; // ← SUBSTITUA pelo número de vocês
+  const msg = encodeURIComponent(`Olá! Vi o site e quero pedir: *${produto}* 😊\n\nPoderia me dar mais informações e o valor?`);
+  window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
+}
+
+// ── Intersection Observer (fade-up) ──────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
